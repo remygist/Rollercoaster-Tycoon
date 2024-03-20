@@ -14,15 +14,14 @@ import java.util.Date
 data class Attraction(
         @Id @GeneratedValue var id: Long = -1,
         var name: String,
-        var categoryName: String,
         var capacity: Int,
-        var dateOfBuild: Date,
-        var image: String,
-        var onrideVideo: String,
-        var maintenance: String,
-        var duration: Time,
-        var minHeight: Int,
-        var speed: Int
+      //  var dateOfBuild: Date,
+      //  var image: String,
+        //var onrideVideo: String,
+        //var maintenance: String,
+        //var duration: Time,
+        //var minHeight: Int,
+        //var speed: Int
 ) {
     @ManyToMany
     var categories: List<Category> = mutableListOf()
