@@ -30,5 +30,8 @@ export default {
 </script>
 
 <template>
-            <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity"></Attraction>
+    <div class="attractionLayout">
+        <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity" :dateOfBuild="attraction.dateOfBuild" :maintenance="attraction.maintenance" :duration="attraction.duration" :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo">
+        </Attraction>
+    </div>
 </template>
