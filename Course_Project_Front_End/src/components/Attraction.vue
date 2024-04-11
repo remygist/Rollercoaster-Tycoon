@@ -24,6 +24,8 @@ export default {
         <p>Minimum height: {{ minHeight }}</p>
         <p>Speed: {{ speed }}</p>
         <a :href="onrideVideo" target="_blank">Onride video</a>
+        <img :src="image" :alt="name">
         <br>
     </div>
 </template>
+
