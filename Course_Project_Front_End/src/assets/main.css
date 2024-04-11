@@ -1,3 +1,21 @@
+nav{
+  display: flex;
+}
+
+nav a{
+  margin-right: 20px;
+  border: 1px solid black;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 5px;
+  color: black;
+}
+
+nav a:hover{
+  background-color: black;
+  color: white;
+}
+
 .attractionLayout {
   display: flex;
   padding: 10px;
@@ -12,4 +30,17 @@
 .attraction img{
   width: 200px;
   height: 200px;
+}
+
+.btn{
+  border: 1px solid black;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 5px;
+  color: black;
+}
+
+.btn:hover{
+  background-color: black;
+  color: white;
 }

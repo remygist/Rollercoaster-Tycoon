@@ -1,12 +1,9 @@
-<script setup>
-import Attractions from './components/Attractions.vue'
-
-</script>
-
 <template>
-  <Attractions></Attractions>
+  <nav>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/attractions/add">Add attractions</RouterLink>
+  </nav>
+  <main>
+    <RouterView />
+  </main>
 </template>
-
-<style scoped>
-
-</style>

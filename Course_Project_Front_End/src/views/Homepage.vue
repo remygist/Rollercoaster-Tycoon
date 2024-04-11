@@ -1,5 +1,5 @@
 <script>
-import Attraction from "./Attraction.vue";
+import Attraction from "../components/Attraction.vue";
 
 export default {
     data() {
@@ -31,7 +31,10 @@ export default {
 
 <template>
     <div class="attractionLayout">
-        <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity" :dateOfBuild="attraction.dateOfBuild" :maintenance="attraction.maintenance" :duration="attraction.duration" :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo">
+        <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity"
+            :dateOfBuild="attraction.dateOfBuild" :maintenance="attraction.maintenance" :duration="attraction.duration"
+            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo">
         </Attraction>
     </div>
+    <RouterLink to="/attractions/add" class="btn">Add Attraction</RouterLink>
 </template>
