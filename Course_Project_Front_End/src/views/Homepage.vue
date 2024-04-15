@@ -33,7 +33,7 @@ export default {
     <div class="attractionLayout">
         <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity"
             :dateOfBuild="attraction.dateOfBuild" :maintenance="attraction.maintenance" :duration="attraction.duration"
-            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo">
+            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo" :image="attraction.image">
         </Attraction>
     </div>
     <RouterLink to="/attractions/add" class="btn">Add Attraction</RouterLink>
