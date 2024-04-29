@@ -36,5 +36,5 @@ export default {
             :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo" :image="attraction.image">
         </Attraction>
     </div>
-    <RouterLink to="/attractions/add" class="btn">Add Attraction</RouterLink>
+    
 </template>

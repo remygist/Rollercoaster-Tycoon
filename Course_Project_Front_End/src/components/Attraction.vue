@@ -26,6 +26,7 @@ export default {
         <a :href="onrideVideo" target="_blank">Onride video</a>
         <img :src="image" :alt="name">
         <br>
+        <RouterLink to="/attractions/add" class="btn">Edit Attraction</RouterLink>
     </div>
 </template>
 
