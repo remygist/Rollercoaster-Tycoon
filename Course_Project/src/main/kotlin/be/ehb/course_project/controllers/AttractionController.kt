@@ -1,5 +1,6 @@
 package be.ehb.course_project.controllers
 
+import be.ehb.course_project.dto.AddCategoryToAttractionRequest
 import be.ehb.course_project.dto.CreateAttractionRequest
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.services.AttractionService
@@ -23,4 +24,11 @@ class AttractionController {
     fun store(@RequestBody attractionRequest: CreateAttractionRequest):Attraction{
         return attractionService.store(attractionRequest)
     }
+
+    @PostMapping("/addCategory")
+    fun addCategory(@RequestBody request: AddCategoryToAttractionRequest): Attraction{
+        return attractionService.addCategory(request)
+    }
+
+
 }

@@ -24,7 +24,7 @@ data class Attraction(
         var speed: Int
 ) {
     @ManyToMany
-    var categories: List<Category> = mutableListOf()
+    var categories: MutableList<Category> = mutableListOf()
 
     @OneToMany
     var maintenances: List<Maintenance> = mutableListOf()
