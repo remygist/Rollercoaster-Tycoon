@@ -73,5 +73,11 @@ class AttractionController {
         return attractionService.update(attractionName, request)
     }
 
+    @DeleteMapping("/deleteAttraction/{attractionName}")
+    fun delete(@PathVariable attractionName: String): String{
+        attractionService.detele(attractionName)
+        return "Attraction Deleted"
+    }
+
 
 }
