@@ -6,7 +6,7 @@ import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.MaintenanceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.Date
+import java.util.*
 
 @Service
 class MaintenanceService {
@@ -47,7 +47,13 @@ class MaintenanceService {
             maintenance.endDate = currentDate
             maintenanceRepository.save(maintenance)
 
+            val calendar = Calendar.getInstance()
+            calendar.time = currentDate
+            calendar.add(Calendar.DAY_OF_YEAR, attraction.maintenanceFrequency)
+            val nextMaintenanceDate = calendar.time
+
             attraction.inMaintenance = false
+            attraction.nextMaintenance = nextMaintenanceDate
             attractionRepository.save(attraction)
         }
     }
