@@ -37,4 +37,19 @@ class CategoryService {
         return categoryRepository.save(category)
     }
 
+    fun delete(categoryName: String): Category? {
+        val category = categoryRepository.findByName(categoryName).orElseThrow {
+            RuntimeException("Category not found")
+        }
+
+        if (category.attractions.isNotEmpty()) {
+            throw RuntimeException("Cannot delete category '$categoryName'. Attractions are still connected to this category.")
+        } else {
+            categoryRepository.delete(category)
+        }
+
+        return category
+    }
+
+
 }
