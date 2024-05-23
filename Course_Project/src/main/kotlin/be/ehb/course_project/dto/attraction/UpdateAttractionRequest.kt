@@ -8,9 +8,10 @@ data class UpdateAttractionRequest(
         var dateOfBuild: Date,
         var image: String,
         var onrideVideo: String,
-        var maintenanceFrequency: String,
+        var maintenanceFrequency: Int,
         var duration: Int,
         var minHeight: Int,
         var speed: Int,
-        var inMaintenance: Boolean
+        var inMaintenance: Boolean,
+        var nextMaintenance: Date
 )

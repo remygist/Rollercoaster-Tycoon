@@ -43,6 +43,7 @@ class AttractionController {
                             minHeight = a.minHeight,
                             speed = a.speed,
                             inMaintenance = a.inMaintenance,
+                            nextMaintenance = a.nextMaintenance,
                             categories = convertCategoryList(a.categories),
                             maintenances = convertMaintenanceList(a.maintenances)
                     )

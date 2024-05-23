@@ -8,6 +8,7 @@ import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.CategoryRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.Calendar
 
 @Service
 class AttractionService {
@@ -27,6 +28,10 @@ class AttractionService {
             throw RuntimeException("Attraction name `${attraction.name}` is already taken.")
         }
 
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, attraction.maintenanceFrequency)
+        val nextMaintenanceDate = calendar.time
+
         val a = Attraction(
                 name = attraction.name,
                 capacity = attraction.capacity,
@@ -37,7 +42,8 @@ class AttractionService {
                 maintenanceFrequency = attraction.maintenanceFrequency,
                 minHeight = attraction.minHeight,
                 speed = attraction.speed,
-                inMaintenance = attraction.inMaintenance
+                inMaintenance = attraction.inMaintenance,
+                nextMaintenance = nextMaintenanceDate
         )
 
         return attractionRepository.save(a)
