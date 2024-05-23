@@ -99,5 +99,29 @@ class AttractionController {
         return "Attraction Deleted"
     }
 
+    @GetMapping("/getOne/{attractionName}")
+    fun getOne(@PathVariable attractionName: String): AttractionResponse? {
+        var tempAttraction = attractionService.getOne(attractionName)
+        return tempAttraction?.let { convertAttractionToResponse(it) }
+    }
+
+    fun convertAttractionToResponse(attraction: Attraction): AttractionResponse {
+        return AttractionResponse(
+                name = attraction.name,
+                capacity = attraction.capacity,
+                dateOfBuild = attraction.dateOfBuild,
+                image = attraction.image,
+                onrideVideo = attraction.onrideVideo,
+                maintenanceFrequency = attraction.maintenanceFrequency,
+                duration = attraction.duration,
+                minHeight = attraction.minHeight,
+                speed = attraction.speed,
+                inMaintenance = attraction.inMaintenance,
+                nextMaintenance = attraction.nextMaintenance,
+                categories = convertCategoryList(attraction.categories),
+                maintenances = convertMaintenanceList(attraction.maintenances)
+        )
+    }
+
 
 }

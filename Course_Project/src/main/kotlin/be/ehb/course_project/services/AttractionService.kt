@@ -8,7 +8,7 @@ import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.CategoryRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.Calendar
+import java.util.*
 
 @Service
 class AttractionService {
@@ -84,5 +84,12 @@ class AttractionService {
             throw RuntimeException("Attraction not found")
         }
         attractionRepository.delete(attraction)
+    }
+
+    fun getOne(attractionName: String): Attraction? {
+        val attraction = attractionRepository.findByName(attractionName).orElseThrow{
+            RuntimeException("No attraction found")
+        }
+        return attraction
     }
 }
