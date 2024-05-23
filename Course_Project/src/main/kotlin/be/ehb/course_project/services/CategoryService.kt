@@ -17,6 +17,11 @@ class CategoryService {
     }
 
     fun store(c: CreateCategoryRequest): Category{
+        val categoryWithName = categoryRepository.findByName(c.title)
+        if (categoryWithName.isPresent){
+            throw RuntimeException("Category name `${c.title}` has already been taken.")
+        }
+
         val newCategory = Category(title = c.title)
         return categoryRepository.save(newCategory)
     }
