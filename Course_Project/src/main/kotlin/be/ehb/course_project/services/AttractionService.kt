@@ -79,7 +79,7 @@ class AttractionService {
         return attractionRepository.save(attraction)
     }
 
-    fun detele(attractionName: String){
+    fun delete(attractionName: String){
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
             throw RuntimeException("Attraction not found")
         }

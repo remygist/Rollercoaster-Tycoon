@@ -95,7 +95,7 @@ class AttractionController {
 
     @DeleteMapping("/deleteAttraction/{attractionName}")
     fun delete(@PathVariable attractionName: String): String{
-        attractionService.detele(attractionName)
+        attractionService.delete(attractionName)
         return "Attraction Deleted"
     }
 
