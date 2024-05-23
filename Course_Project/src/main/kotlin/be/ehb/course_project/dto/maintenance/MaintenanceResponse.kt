@@ -5,5 +5,5 @@ import java.util.*
 data class MaintenanceResponse(
         var reason: String,
         var startDate: Date,
-        var endDate: Date
+        var endDate: Date?
 )

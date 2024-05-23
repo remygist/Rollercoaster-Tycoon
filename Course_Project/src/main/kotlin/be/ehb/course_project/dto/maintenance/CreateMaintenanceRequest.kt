@@ -5,5 +5,5 @@ import java.util.*
 data class CreateMaintenanceRequest(
         var reason: String,
         var startDate: Date,
-        var endDate: Date
+        var endDate: Date? = null
 )

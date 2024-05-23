@@ -6,6 +6,7 @@ import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.MaintenanceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.Date
 
 @Service
 class MaintenanceService {
@@ -21,7 +22,7 @@ class MaintenanceService {
         val maintenance = Maintenance(
                 reason = request.reason,
                 startDate = request.startDate,
-                endDate = request.endDate,
+                endDate = null,
         )
 
         maintenance.attraction = attraction
@@ -31,5 +32,23 @@ class MaintenanceService {
         attraction.maintenances.add(savedMaintenance)
         attraction.inMaintenance = true
         attractionRepository.save(attraction)
+    }
+
+    fun finishMaintenance(attractionName: String){
+        val attraction = attractionRepository.findByName(attractionName).orElseThrow{
+            RuntimeException("Attraction not found")
+        }
+
+        if (attraction.inMaintenance == false){
+            throw RuntimeException("The attraction is not under maintenance.")
+        } else{
+            val currentDate = Date()
+            val maintenance = attraction.maintenances.last()
+            maintenance.endDate = currentDate
+            maintenanceRepository.save(maintenance)
+
+            attraction.inMaintenance = false
+            attractionRepository.save(attraction)
+        }
     }
 }

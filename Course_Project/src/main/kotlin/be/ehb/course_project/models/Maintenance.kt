@@ -11,7 +11,7 @@ data class Maintenance(
         @Id @GeneratedValue var id: Long = -1,
         var reason: String,
         var startDate: Date,
-        var endDate: Date
+        var endDate: Date? = null
 
 ) {
     @ManyToOne
