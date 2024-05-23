@@ -1,6 +1,7 @@
 package be.ehb.course_project.services
 
 import be.ehb.course_project.dto.category.CreateCategoryRequest
+import be.ehb.course_project.dto.category.UpdateCategoryRequest
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.repositories.CategoryRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,6 +27,14 @@ class CategoryService {
         return categoryRepository.save(newCategory)
     }
 
+    fun update(categoryName: String, updateCategoryRequest: UpdateCategoryRequest):Category{
+        val category = categoryRepository.findByName(categoryName).orElseThrow{
+            throw RuntimeException("Category not found")
+        }
 
+        updateCategoryRequest.title?.let { category.title = it }
+
+        return categoryRepository.save(category)
+    }
 
 }
