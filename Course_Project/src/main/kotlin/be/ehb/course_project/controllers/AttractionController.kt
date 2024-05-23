@@ -3,6 +3,7 @@ package be.ehb.course_project.controllers
 import be.ehb.course_project.dto.attraction.AddCategoryToAttractionRequest
 import be.ehb.course_project.dto.attraction.AttractionResponse
 import be.ehb.course_project.dto.attraction.CreateAttractionRequest
+import be.ehb.course_project.dto.attraction.UpdateAttractionRequest
 import be.ehb.course_project.dto.category.CategoryResponse
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
@@ -25,7 +26,7 @@ class AttractionController {
     }
 
     fun convertAttractionList(list: List<Attraction>): List<AttractionResponse>{
-        var attractionResponseList = mutableListOf<AttractionResponse>()
+        val attractionResponseList = mutableListOf<AttractionResponse>()
         for (a in list){
             attractionResponseList.add(
                     AttractionResponse(
@@ -65,6 +66,11 @@ class AttractionController {
     @PostMapping("/addCategory")
     fun addCategory(@RequestBody request: AddCategoryToAttractionRequest): Attraction{
         return attractionService.addCategory(request)
+    }
+
+    @PutMapping("/editAttraction/{attractionName}")
+    fun update(@PathVariable attractionName: String, @RequestBody request: UpdateAttractionRequest): Attraction {
+        return attractionService.update(attractionName, request)
     }
 
 
