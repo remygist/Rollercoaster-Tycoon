@@ -22,6 +22,11 @@ class AttractionService {
     }
 
     fun store(attraction: CreateAttractionRequest): Attraction {
+        val attractionWithName = attractionRepository.findByName(attraction.name)
+        if (attractionWithName.isPresent){
+            throw RuntimeException("Attraction name `${attraction.name}` is already taken.")
+        }
+
         val a = Attraction(
                 name = attraction.name, capacity = attraction.capacity, dateOfBuild = attraction.dateOfBuild, duration = attraction.duration, image = attraction.image, onrideVideo = attraction.onrideVideo, maintenance = attraction.maintenance, minHeight = attraction.minHeight, speed = attraction.speed
         )
