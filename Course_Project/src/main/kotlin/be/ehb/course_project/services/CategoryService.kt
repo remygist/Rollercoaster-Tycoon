@@ -1,6 +1,6 @@
 package be.ehb.course_project.services
 
-import be.ehb.course_project.dto.CreateCategoryRequest
+import be.ehb.course_project.dto.category.CreateCategoryRequest
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.repositories.CategoryRepository
 import org.springframework.beans.factory.annotation.Autowired

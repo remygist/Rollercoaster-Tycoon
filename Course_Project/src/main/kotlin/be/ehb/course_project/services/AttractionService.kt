@@ -1,7 +1,7 @@
 package be.ehb.course_project.services
 
-import be.ehb.course_project.dto.AddCategoryToAttractionRequest
-import be.ehb.course_project.dto.CreateAttractionRequest
+import be.ehb.course_project.dto.attraction.AddCategoryToAttractionRequest
+import be.ehb.course_project.dto.attraction.CreateAttractionRequest
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.CategoryRepository
