@@ -27,7 +27,7 @@ export default {
         <img :src="image" :alt="name">
         <br>
         <br>
-        <RouterLink to="/attractions/edit" class="btn">Edit Attraction</RouterLink>
+        <RouterLink :to="{ path: '/attraction/edit', query: { name: name } }" class="btn">Edit Attraction</RouterLink>
     </div>
 </template>
 

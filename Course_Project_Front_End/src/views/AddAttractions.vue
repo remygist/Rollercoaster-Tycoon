@@ -7,10 +7,11 @@ export default {
             dateOfBuild: '',
             image: '',
             onrideVideo: '',
-            maintenance: '',
+            maintenanceFrequency: '',
             duration: 0,
             minHeight: 0,
-            speed: 0
+            speed: 0,
+            inMaintenance: ""
         }
     },
     methods: {
@@ -21,10 +22,11 @@ export default {
                 dateOfBuild: this.dateOfBuild,
                 image: this.image,
                 onrideVideo: this.onrideVideo,
-                maintenance: this.maintenance,
+                maintenanceFrequency: this.maintenanceFrequency,
                 duration: this.duration,
                 minHeight: this.minHeight,
-                speed: this.speed
+                speed: this.speed,
+                inMaintenance: this.inMaintenance
             };
             fetch('http://localhost:8080/index',{
                 method: 'POST',
@@ -46,7 +48,7 @@ export default {
         <p>Date Of Build: <input type="date" v-model="dateOfBuild"></p>
         <p>Image: <input type="text" v-model="image"></p>
         <p>Onride Video: <input type="text" v-model="onrideVideo"></p>
-        <p>Maintenance: <input type="String" v-model="maintenance"></p>
+        <p>Maintenance frequency: <input type="number" v-model="maintenanceFrequency"></p>
         <p>Duration (in seconds): <input type="number" v-model="duration"></p>
         <p>Minimum height (in cm): <input type="number" v-model="minHeight"></p>
         <p>Speed: (in km/h) <input type="number" v-model="speed"></p>
