@@ -8,6 +8,7 @@ import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.services.CategoryService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("category")
+@CrossOrigin
 class CategoryController {
 
     @Autowired
