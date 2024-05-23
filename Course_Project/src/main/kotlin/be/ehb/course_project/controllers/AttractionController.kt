@@ -5,9 +5,12 @@ import be.ehb.course_project.dto.attraction.AttractionResponse
 import be.ehb.course_project.dto.attraction.CreateAttractionRequest
 import be.ehb.course_project.dto.attraction.UpdateAttractionRequest
 import be.ehb.course_project.dto.category.CategoryResponse
+import be.ehb.course_project.dto.maintenance.MaintenanceResponse
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
+import be.ehb.course_project.models.Maintenance
 import be.ehb.course_project.services.AttractionService
+import com.sun.tools.javac.Main
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -35,11 +38,13 @@ class AttractionController {
                             dateOfBuild = a.dateOfBuild,
                             image = a.image,
                             onrideVideo = a.onrideVideo,
-                            maintenance = a.maintenance,
+                            maintenanceFrequency = a.maintenanceFrequency,
                             duration = a.duration,
                             minHeight = a.minHeight,
                             speed = a.speed,
-                            categories = convertCategoryList(a.categories)
+                            inMaintenance = a.inMaintenance,
+                            categories = convertCategoryList(a.categories),
+                            maintenances = convertMaintenanceList(a.maintenances)
                     )
             )
         }
@@ -56,6 +61,20 @@ class AttractionController {
             )
         }
         return categoryResponseList.toList()
+    }
+
+    fun convertMaintenanceList(list: List<Maintenance>): List<MaintenanceResponse>{
+        val maintenanceResponseList = mutableListOf<MaintenanceResponse>()
+        for (m in list){
+            maintenanceResponseList.add(
+                    MaintenanceResponse(
+                            reason = m.reason,
+                            startDate = m.startDate,
+                            endDate = m.endDate
+                    )
+            )
+        }
+        return maintenanceResponseList
     }
 
     @PostMapping("")

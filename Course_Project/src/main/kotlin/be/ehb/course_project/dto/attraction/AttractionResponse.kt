@@ -1,6 +1,8 @@
 package be.ehb.course_project.dto.attraction
 
 import be.ehb.course_project.dto.category.CategoryResponse
+import be.ehb.course_project.dto.maintenance.MaintenanceResponse
+import be.ehb.course_project.models.Maintenance
 import java.util.*
 
 data class AttractionResponse(
@@ -9,9 +11,11 @@ data class AttractionResponse(
         var dateOfBuild: Date,
         var image: String,
         var onrideVideo: String,
-        var maintenance: String,
+        var maintenanceFrequency: String,
         var duration: Int,
         var minHeight: Int,
         var speed: Int,
-        var categories: List<CategoryResponse>
+        var inMaintenance: Boolean,
+        var categories: List<CategoryResponse>,
+        var maintenances: List<MaintenanceResponse>
 )

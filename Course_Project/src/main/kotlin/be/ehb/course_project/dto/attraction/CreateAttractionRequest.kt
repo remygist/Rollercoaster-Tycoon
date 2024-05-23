@@ -8,8 +8,9 @@ data class CreateAttractionRequest(
         var dateOfBuild: Date,
         var image: String,
         var onrideVideo: String,
-        var maintenance: String,
+        var maintenanceFrequency: String,
         var duration: Int,
         var minHeight: Int,
-        var speed: Int
+        var speed: Int,
+        var inMaintenance: Boolean
 )

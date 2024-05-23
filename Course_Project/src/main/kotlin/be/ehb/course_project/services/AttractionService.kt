@@ -28,7 +28,16 @@ class AttractionService {
         }
 
         val a = Attraction(
-                name = attraction.name, capacity = attraction.capacity, dateOfBuild = attraction.dateOfBuild, duration = attraction.duration, image = attraction.image, onrideVideo = attraction.onrideVideo, maintenance = attraction.maintenance, minHeight = attraction.minHeight, speed = attraction.speed
+                name = attraction.name,
+                capacity = attraction.capacity,
+                dateOfBuild = attraction.dateOfBuild,
+                duration = attraction.duration,
+                image = attraction.image,
+                onrideVideo = attraction.onrideVideo,
+                maintenanceFrequency = attraction.maintenanceFrequency,
+                minHeight = attraction.minHeight,
+                speed = attraction.speed,
+                inMaintenance = attraction.inMaintenance
         )
 
         return attractionRepository.save(a)
@@ -55,10 +64,11 @@ class AttractionService {
         updateAttractionRequest.dateOfBuild?.let { attraction.dateOfBuild = it }
         updateAttractionRequest.image?.let { attraction.image = it }
         updateAttractionRequest.onrideVideo?.let { attraction.onrideVideo = it }
-        updateAttractionRequest.maintenance?.let { attraction.maintenance = it }
+        updateAttractionRequest.maintenanceFrequency?.let { attraction.maintenanceFrequency = it }
         updateAttractionRequest.duration?.let { attraction.duration = it }
         updateAttractionRequest.minHeight?.let { attraction.minHeight = it }
         updateAttractionRequest.speed?.let { attraction.speed = it }
+        updateAttractionRequest.inMaintenance?.let { attraction.inMaintenance = it }
 
         return attractionRepository.save(attraction)
     }
