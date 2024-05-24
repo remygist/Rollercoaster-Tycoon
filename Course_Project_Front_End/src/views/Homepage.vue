@@ -32,8 +32,8 @@ export default {
 <template>
     <div class="attractionLayout">
         <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity"
-            :dateOfBuild="attraction.dateOfBuild" :maintenance="attraction.maintenance" :duration="attraction.duration"
-            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo" :image="attraction.image">
+            :dateOfBuild="attraction.dateOfBuild" :maintenanceFrequency="attraction.maintenanceFrequency" :duration="attraction.duration"
+            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo" :image="attraction.image" :categories="attraction.categories" :inMaintenance="attraction.inMaintenance">
         </Attraction>
     </div>
     
