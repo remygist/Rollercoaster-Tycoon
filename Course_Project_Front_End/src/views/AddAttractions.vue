@@ -26,7 +26,7 @@ export default {
                 duration: this.duration,
                 minHeight: this.minHeight,
                 speed: this.speed,
-                inMaintenance: this.inMaintenance
+                inMaintenance: false
             };
             fetch('http://localhost:8080/index',{
                 method: 'POST',
