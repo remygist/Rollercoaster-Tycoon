@@ -4,5 +4,5 @@ import be.ehb.course_project.dto.attraction.AttractionResponse
 
 data class CategoryResponse(
         var title: String,
-        var attraction: List<AttractionResponse>? = null
+        var attractions: List<AttractionResponse>? = null
 )

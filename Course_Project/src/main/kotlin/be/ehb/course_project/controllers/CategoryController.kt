@@ -38,7 +38,7 @@ class CategoryController {
             categoryResponseList.add(
                     CategoryResponse(
                             title = c.title,
-                            attraction = convertAttractionList(c.attractions)
+                            attractions = convertAttractionList(c.attractions)
                     )
             )
         }
