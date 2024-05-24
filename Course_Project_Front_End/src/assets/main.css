@@ -16,12 +16,12 @@ nav a:hover{
   color: white;
 }
 
-.attractionLayout {
+.attractionLayout, .categoryLayout {
   display: flex;
   padding: 10px;
 }
 
-.attraction {
+.attraction, .category {
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
