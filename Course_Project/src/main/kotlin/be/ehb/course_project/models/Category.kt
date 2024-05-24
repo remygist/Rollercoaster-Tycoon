@@ -1,5 +1,6 @@
 package be.ehb.course_project.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -11,5 +12,6 @@ data class Category(
         var title: String
 ) {
     @ManyToMany
-    var attractions: List<Attraction> = mutableListOf()
+    @JsonIgnore
+    var attractions: MutableList<Attraction> = mutableListOf()
 }

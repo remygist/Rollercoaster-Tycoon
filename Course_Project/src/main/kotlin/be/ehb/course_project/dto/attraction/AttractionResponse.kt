@@ -7,16 +7,16 @@ import java.util.*
 
 data class AttractionResponse(
         var name: String,
-        var capacity: Int,
-        var dateOfBuild: Date,
-        var image: String,
-        var onrideVideo: String,
-        var maintenanceFrequency: Int,
-        var duration: Int,
-        var minHeight: Int,
-        var speed: Int,
-        var inMaintenance: Boolean,
-        var nextMaintenance: Date?,
-        var categories: List<CategoryResponse>,
-        var maintenances: List<MaintenanceResponse>
+        var capacity: Int? = null,
+        var dateOfBuild: Date? = null,
+        var image: String? = null,
+        var onrideVideo: String? = null,
+        var maintenanceFrequency: Int? = null,
+        var duration: Int? = null,
+        var minHeight: Int? = null,
+        var speed: Int? = null,
+        var inMaintenance: Boolean? = null,
+        var nextMaintenance: Date? = null,
+        var categories: List<CategoryResponse>? = null,
+        var maintenances: List<MaintenanceResponse>? = null
 )

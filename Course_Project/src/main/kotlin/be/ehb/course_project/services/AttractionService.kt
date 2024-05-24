@@ -57,6 +57,7 @@ class AttractionService {
         val category = categoryOptional.orElseThrow { RuntimeException("Category not found") }
 
         attraction.categories.add(category)
+        category.attractions.add(attraction)
         return attractionRepository.save(attraction)
     }
 

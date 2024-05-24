@@ -27,10 +27,35 @@ class CategoryController {
     lateinit var categoryService: CategoryService
 
     @GetMapping("")
-    fun index(): List<Category>{
-        return categoryService.index()
+    fun index(): List<CategoryResponse>{
+        val tempList = categoryService.index()
+        return convertCategoryList(tempList)
     }
 
+    fun convertCategoryList(list: List<Category>): List<CategoryResponse> {
+        val categoryResponseList = mutableListOf<CategoryResponse>()
+        for (c in list) {
+            categoryResponseList.add(
+                    CategoryResponse(
+                            title = c.title,
+                            attraction = convertAttractionList(c.attractions)
+                    )
+            )
+        }
+        return categoryResponseList
+    }
+
+    fun convertAttractionList(list: List<Attraction>): List<AttractionResponse>{
+        val attractionResponseList = mutableListOf<AttractionResponse>()
+        for (a in list){
+            attractionResponseList.add(
+                    AttractionResponse(
+                            name = a.name,
+                    )
+            )
+        }
+        return attractionResponseList
+    }
 
     @PostMapping("")
     fun store(@RequestBody categoryRequest: CreateCategoryRequest): Category{
