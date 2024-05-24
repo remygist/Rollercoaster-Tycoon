@@ -43,6 +43,18 @@ export default {
             }).then(function (response){
                 console.log(response);
             })
+        },
+        deleteAttraction(){
+            const currentComponent = this;
+
+            fetch(`http://localhost:8080/index/deleteAttraction/${this.attractionName}`,{
+                method: 'DELETE',
+                headers: {"Content-Type": "application/json"},
+            }).then(function (response){
+                console.log(response);
+            })
+            this.$router.push('/');
+            
         }
     }
 }
@@ -65,6 +77,7 @@ export default {
                 <p>Minimum height (in cm): <input type="number" v-model="attraction.minHeight"></p>
                 <p>Speed: (in km/h) <input type="number" v-model="attraction.speed"></p>
                 <button type="submit">Save Changes</button>
+                <button @click="deleteAttraction">Delete Attraction</button>
             </form>
         </div>
         <div v-else>

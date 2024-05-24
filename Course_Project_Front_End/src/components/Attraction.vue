@@ -11,7 +11,7 @@ export default {
         minHeight: Number,
         speed: Number,
         inMaintenance: Boolean,
-        nextMaintenance: Date,
+        nextMaintenance: String,
         categories: Array,
         maintenances: Array
     }
@@ -32,6 +32,7 @@ export default {
                 {{ category.title }},
             </span></p>
         <p>Previous maintenances: {{ maintenances }}</p>
+        <p>Next maintenance due: {{ nextMaintenance }}</p>
         <a :href="onrideVideo" target="_blank">Onride video</a>
         <img :src="image" :alt="name">
         <br>

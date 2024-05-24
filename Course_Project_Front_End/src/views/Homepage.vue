@@ -17,11 +17,16 @@ export default {
                     currentComponent.attractions = attractions;
                     console.log(currentComponent.attractions);
                 })
-        }
+        },
     },
     mounted() {
         console.log('attractions component');
         this.getAttractions();
+    },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            vm.getAttractions();
+        });
     },
     components: {
         Attraction
@@ -33,7 +38,8 @@ export default {
     <div class="attractionLayout">
         <Attraction v-for="attraction in attractions" :name="attraction.name" :capacity="attraction.capacity"
             :dateOfBuild="attraction.dateOfBuild" :maintenanceFrequency="attraction.maintenanceFrequency" :duration="attraction.duration"
-            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo" :image="attraction.image" :categories="attraction.categories" :inMaintenance="attraction.inMaintenance">
+            :minHeight="attraction.minHeight" :speed="attraction.speed" :onrideVideo="attraction.onrideVideo" :image="attraction.image" 
+            :categories="attraction.categories" :inMaintenance="attraction.inMaintenance" :nextMaintenance="attraction.nextMaintenance">
         </Attraction>
     </div>
     
