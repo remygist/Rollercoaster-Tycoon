@@ -10,7 +10,6 @@ import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.models.Maintenance
 import be.ehb.course_project.services.AttractionService
-import com.sun.tools.javac.Main
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -24,7 +23,7 @@ class AttractionController {
 
     @GetMapping("")
     fun index(): List<AttractionResponse>{
-         var tempList = attractionService.index()
+         val tempList = attractionService.index()
         return convertAttractionList(tempList)
     }
 
@@ -101,7 +100,7 @@ class AttractionController {
 
     @GetMapping("/getOne/{attractionName}")
     fun getOne(@PathVariable attractionName: String): AttractionResponse? {
-        var tempAttraction = attractionService.getOne(attractionName)
+        val tempAttraction = attractionService.getOne(attractionName)
         return tempAttraction?.let { convertAttractionToResponse(it) }
     }
 
