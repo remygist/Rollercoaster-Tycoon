@@ -16,9 +16,14 @@ export default {
             fetch(`http://localhost:8080/index/getOne/${this.attractionName}`)
                 .then(response => response.json())
                 .then(function (attraction) {
+                    attraction.dateOfBuild = currentComponent.formatDate(attraction.dateOfBuild);
+                    attraction.nextMaintenance = currentComponent.formatDate(attraction.nextMaintenance);
                     currentComponent.attraction = attraction;
                     console.log(currentComponent.attraction);
                 })
+        },
+        formatDate(dateString) {
+            return new Date(dateString).toISOString().split('T')[0];
         },
         submit() {
             const attractionData = {
