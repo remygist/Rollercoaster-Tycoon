@@ -5,7 +5,8 @@ export default {
             categoryTitle: this.$route.query.title,
             originalTitle: this.$route.query.title,
             category: null,
-            attractionName: null,
+            addAttractionName: null,
+            removeAttractionName: null,
             attractions: []
         };
     },
@@ -40,13 +41,28 @@ export default {
         addAttraction() {  
             const categoryData = {
                 categoryName: this.categoryTitle,
-                attractionName: this.attractionName
+                attractionName: this.addAttractionName
             }
             console.log(categoryData)
             fetch(`http://localhost:8080/index/addCategory`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(categoryData)
+            }).then(function (response) {
+                console.log(response);
+            })
+            
+     
+        },
+        deleteAttraction() {  
+            const attractionData = {
+                name: this.removeAttractionName
+            }
+            console.log(attractionData)
+            fetch(`http://localhost:8080/index/deleteCategory/${this.originalTitle}`, {
+                method: 'DELETE',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(attractionData)
             }).then(function (response) {
                 console.log(response);
             })
@@ -65,9 +81,14 @@ export default {
             <button type="submit">Save Changes</button>
             <button @click="deleteCategory">Delete Category</button>
             <div>
-                <h3>Add Attraction</h3>
-                <input type="text" v-model="attractionName" placeholder="Attraction Name">
+                <h3>Add Attraction To Catergory</h3>
+                <input type="text" v-model="addAttractionName" placeholder="Attraction Name">
                 <button type="button" @click="addAttraction">Add Attraction</button>
+            </div>
+            <div>
+                <h3>Delete Attraction From Catergory</h3>
+                <input type="text" v-model="removeAttractionName" placeholder="Attraction Name">
+                <button type="button" @click="deleteAttraction">Delete Attraction</button>
             </div>
         </form>
     </div>
