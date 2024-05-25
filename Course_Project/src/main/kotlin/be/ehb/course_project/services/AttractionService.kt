@@ -1,9 +1,11 @@
 package be.ehb.course_project.services
 
 import be.ehb.course_project.dto.attraction.AddCategoryToAttractionRequest
+import be.ehb.course_project.dto.attraction.AttractionResponse
 import be.ehb.course_project.dto.attraction.CreateAttractionRequest
 import be.ehb.course_project.dto.attraction.UpdateAttractionRequest
 import be.ehb.course_project.models.Attraction
+import be.ehb.course_project.models.Category
 import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.CategoryRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -85,6 +87,16 @@ class AttractionService {
             throw RuntimeException("Attraction not found")
         }
         attractionRepository.delete(attraction)
+    }
+
+    fun remove(categoryName: String, a: AttractionResponse): Category {
+        val category = categoryRepository.findByName(categoryName).orElseThrow{
+            throw RuntimeException("Category not found")
+        }
+        val attractionOptional = attractionRepository.findByName(a.name)
+        val attraction = attractionOptional.orElseThrow { RuntimeException("Attraction not found") }
+        category.attractions.remove(attraction)
+        return categoryRepository.save(category)
     }
 
     fun getOne(attractionName: String): Attraction? {
