@@ -14,7 +14,7 @@ export default {
             {{ attraction.name }},
             </span>
         </p>
-        <RouterLink :to="{ path: '/category/editCategory', query: { title: title} }" class="btn">Edit Category</RouterLink>
+        <RouterLink :to="{ path: '/category/edit', query: { title: title} }" class="btn">Edit Category</RouterLink>
     </div>
 </template>
 
