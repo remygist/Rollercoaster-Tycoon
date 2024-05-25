@@ -38,6 +38,7 @@ export default {
         <br>
         <br>
         <RouterLink :to="{ path: '/attraction/edit', query: { name: name } }" class="btn">Edit Attraction</RouterLink>
+        <RouterLink :to="{ path: '/maintenance/add', query: { name: name } }" class="btn">Start Maintenance</RouterLink>
     </div>
 </template>
 
