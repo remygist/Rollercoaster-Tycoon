@@ -96,6 +96,7 @@ class AttractionService {
         val attractionOptional = attractionRepository.findByName(a.name)
         val attraction = attractionOptional.orElseThrow { RuntimeException("Attraction not found") }
         category.attractions.remove(attraction)
+        attraction.categories.remove(category)
         return categoryRepository.save(category)
     }
 
