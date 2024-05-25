@@ -58,6 +58,10 @@ class AttractionService {
         val attraction = attractionOptional.orElseThrow { RuntimeException("Attraction not found") }
         val category = categoryOptional.orElseThrow { RuntimeException("Category not found") }
 
+        if (attraction.categories.contains(category)) {
+           throw RuntimeException("Attraction already contains this category")
+        }
+
         attraction.categories.add(category)
         category.attractions.add(attraction)
         return attractionRepository.save(attraction)
