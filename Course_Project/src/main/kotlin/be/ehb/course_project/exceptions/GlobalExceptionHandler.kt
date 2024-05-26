@@ -19,4 +19,10 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(GenericErrorResponse(status = HttpStatus.NOT_FOUND.value(), message = exception.message, timeStamp = System.currentTimeMillis()))
     }
+
+    @ExceptionHandler
+    fun handleCategoryNotFoundException(exception: CategoryNotFoundException): ResponseEntity<GenericErrorResponse>{
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(GenericErrorResponse(status = HttpStatus.NOT_FOUND.value(), message = exception.message, timeStamp = System.currentTimeMillis()))
+    }
 }
