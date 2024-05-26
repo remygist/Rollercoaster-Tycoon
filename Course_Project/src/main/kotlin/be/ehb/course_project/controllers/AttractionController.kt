@@ -87,10 +87,10 @@ class AttractionController {
         return attractionService.addCategory(request)
     }
 
-    @DeleteMapping("/deleteCategory/{categoryName}")
-    fun deleteCategory(@PathVariable categoryName: String, @RequestBody request: AttractionResponse): String{
+    @DeleteMapping("/deleteCategoryFromAttraction/{categoryName}")
+    fun deleteCategoryFromAttraction(@PathVariable categoryName: String, @RequestBody request: AttractionResponse): String{
         attractionService.remove(categoryName, request)
-        return "Attraction removed from category"
+        return "Category removed from attraction"
     }
 
     @PutMapping("/editAttraction/{attractionName}")
