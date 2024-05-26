@@ -16,6 +16,12 @@ export default {
     },
     methods: {
         submit() {
+
+            if (!this.name || !this.capacity || !this.dateOfBuild || !this.image || !this.onrideVideo || !this.maintenanceFrequency || !this.duration || !this.minHeight || !this.speed) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
             const attractionData = {
                 name: this.name,
                 capacity: this.capacity,
@@ -33,8 +39,15 @@ export default {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(attractionData)
             }).then(function (response){
+                if (!response.ok) {
+                    throw new Error('Failed to add attraction. Please try again later.');
+                }
+                alert('Attraction added succesfully!');
                 console.log(response);
+                window.location.reload();
             })
+            
+            
         }
     }
 }

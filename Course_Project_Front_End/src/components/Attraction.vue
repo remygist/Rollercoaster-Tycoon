@@ -21,8 +21,13 @@ export default {
                 method: 'PUT',
                 headers: { "Content-Type": "application/json" },
             }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Failed to end maintenance. Please try again later.');
+                }
+                alert('Maintenance ended succesfully!');
                 console.log(response);
-            }), window.location.reload();
+                window.location.reload();
+            })
         }
 
     }
@@ -42,10 +47,10 @@ export default {
       <p v-if="inMaintenance">Next maintenance due: Ongoing</p>
       <p v-else>Next maintenance due: {{ nextMaintenance }}</p>
       <p>Categories: 
-        <span v-for="(category, index) in categories" :key="index">{{ category.title }}</span>
+        <span v-for="(category, index) in categories" :key="index">{{ category.title }}, </span>
       </p>
       <p>Previous maintenances: 
-        <span v-for="(maintenance, index) in maintenances" :key="index">{{ maintenance.reason }}</span>
+        <span v-for="(maintenance, index) in maintenances" :key="index">{{ maintenance.reason }}, </span>
       </p>
       <a :href="onrideVideo" target="_blank">Onride video</a>
       <img :src="image" :alt="name">

@@ -12,6 +12,10 @@ export default {
     },
     methods: {
         submit() {
+            if (!this.categoryTitle || !this.attractions) {
+            alert('Please fill in a category name.');
+            return;
+            }
             const categoryData = {
                 title: this.categoryTitle,
                 attractions: this.attractions
@@ -23,6 +27,10 @@ export default {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(categoryData)
             }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Failed to update category name. Please try again later.');
+                }
+                alert('Category name updated succesfully!');
                 console.log(response);
             })
         },
@@ -33,12 +41,22 @@ export default {
                 method: 'DELETE',
                 headers: { "Content-Type": "application/json" },
             }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Failed to delete category. Please try again later.');
+                }
+                alert('Category deleted succesfully!');
                 console.log(response);
             })
             this.$router.push('/');
 
         },
         addAttraction() {  
+
+            if (!this.categoryTitle || !this.addAttractionName) {
+            alert('Please fill in the name of the attraction you want to add.');
+            return;
+        }
+
             const categoryData = {
                 categoryName: this.categoryTitle,
                 attractionName: this.addAttractionName
@@ -49,21 +67,33 @@ export default {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(categoryData)
             }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Failed to add attraction to category. Please try again later.');
+                }
+                alert('Category added to attraction succesfully!');
                 console.log(response);
             })
             
      
         },
-        deleteAttractionFromCategory() {  
+        deleteAttractionFromCategory() { 
+            if (!this.categoryTitle || !this.removeAttractionName) {
+            alert('Please fill in the name of the attraction you want to delete.');
+            return;
+            }
             const attractionData = {
                 name: this.removeAttractionName
             }
             console.log(attractionData)
-            fetch(`http://localhost:8080/index/deleteCategory/${this.originalTitle}`, {
+            fetch(`http://localhost:8080/index/deleteCategoryFromAttraction/${this.categoryTitle}`, {
                 method: 'DELETE',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(attractionData)
             }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Failed to delete attraction from category. Please try again later.');
+                }
+                alert('Category deleted from attraction succesfully!');
                 console.log(response);
             })
             

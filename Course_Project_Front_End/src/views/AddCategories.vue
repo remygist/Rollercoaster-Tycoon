@@ -7,6 +7,11 @@ export default {
     },
     methods:{
         submit(){
+            if (!this.title.trim()) {
+                alert('Please enter a title.');
+                return;
+            }
+
             const categoryData = {
                 title: this.title,
             };
@@ -15,7 +20,12 @@ export default {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(categoryData)
             }).then(function (response){
+                if (!response.ok) {
+                    throw new Error('Failed to add category. Please try again later.');
+                }
+                alert('Category added succesfully!');
                 console.log(response);
+                window.location.reload();
             })
         }
     }

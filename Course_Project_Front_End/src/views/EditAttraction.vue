@@ -26,6 +26,11 @@ export default {
             return new Date(dateString).toISOString().split('T')[0];
         },
         submit() {
+            if (!this.attraction || !this.attraction.name || !this.attraction.capacity || !this.attraction.dateOfBuild || !this.attraction.image || !this.attraction.onrideVideo || !this.attraction.maintenanceFrequency || !this.attraction.duration || !this.attraction.minHeight || !this.attraction.speed) {
+        alert('Please fill in all fields.');
+        return;
+        }
+
             const attractionData = {
                 name: this.attraction.name,
                 capacity: this.attraction.capacity,
@@ -46,6 +51,10 @@ export default {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(attractionData)
             }).then(function (response){
+                if (!response.ok) {
+                    throw new Error('Failed to update attraction. Please try again later.');
+                }
+                alert('Attraction updated succesfully!');
                 console.log(response);
             })
         },
@@ -56,9 +65,14 @@ export default {
                 method: 'DELETE',
                 headers: {"Content-Type": "application/json"},
             }).then(function (response){
+                if (!response.ok) {
+                    throw new Error('Failed to delete attraction. Please try again later.');
+                }
+                alert('Attraction deleted succesfully!');
                 console.log(response);
+                this.$router.push('/');
             })
-            this.$router.push('/');
+            
             
         }
     }

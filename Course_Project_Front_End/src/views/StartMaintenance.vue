@@ -9,6 +9,11 @@ export default {
     },
     methods: {
         submit() {
+            if (!this.reason) {
+            alert('Please fill in a reason for maintenance.');
+            return;
+        }
+
             this.startDate = new Date().toISOString();
 
             const maintenanceData = {
@@ -21,6 +26,10 @@ export default {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(maintenanceData)
             }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Failed to start maintenance. Please try again later.');
+                }
+                alert('Maintenance started succesfully!');
                 console.log(response);
             })
         }
