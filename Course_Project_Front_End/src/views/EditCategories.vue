@@ -54,7 +54,7 @@ export default {
             
      
         },
-        deleteAttraction() {  
+        deleteAttractionFromCategory() {  
             const attractionData = {
                 name: this.removeAttractionName
             }
@@ -88,7 +88,7 @@ export default {
             <div>
                 <h3>Delete Attraction From Catergory</h3>
                 <input type="text" v-model="removeAttractionName" placeholder="Attraction Name">
-                <button type="button" @click="deleteAttraction">Delete Attraction</button>
+                <button type="button" @click="deleteAttractionFromCategory">Delete Attraction</button>
             </div>
         </form>
     </div>
