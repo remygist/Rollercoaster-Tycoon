@@ -5,6 +5,7 @@ import be.ehb.course_project.dto.attraction.AttractionResponse
 import be.ehb.course_project.dto.attraction.CreateAttractionRequest
 import be.ehb.course_project.dto.attraction.UpdateAttractionRequest
 import be.ehb.course_project.exceptions.AttractionNotFoundException
+import be.ehb.course_project.exceptions.CategoryNotFoundException
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.repositories.AttractionRepository
@@ -57,8 +58,8 @@ class AttractionService {
             val attractionOptional = attractionRepository.findByName(c.attractionName)
             val categoryOptional = categoryRepository.findByName(c.categoryName)
 
-            val attraction = attractionOptional.orElseThrow { AttractionNotFoundException("Attraction not found") }
-            val category = categoryOptional.orElseThrow { RuntimeException("Category not found") }
+            val attraction = attractionOptional.orElseThrow { AttractionNotFoundException("Attraction '${c.attractionName}' not found") }
+            val category = categoryOptional.orElseThrow { CategoryNotFoundException("Category '${c.categoryName}' not found") }
 
             if (attraction.categories.contains(category)) {
                 throw RuntimeException("Attraction already contains this category")
@@ -75,7 +76,7 @@ class AttractionService {
 
     fun update(attractionName: String, updateAttractionRequest: UpdateAttractionRequest): Attraction{
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
-            throw RuntimeException("Attraction not found")
+            throw AttractionNotFoundException("Attraction '$attractionName' not found")
         }
 
         updateAttractionRequest.name?.let { attraction.name = it }
@@ -94,17 +95,17 @@ class AttractionService {
 
     fun delete(attractionName: String){
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
-            throw RuntimeException("Attraction not found")
+            AttractionNotFoundException("Attraction '$attractionName' not found")
         }
         attractionRepository.delete(attraction)
     }
 
     fun remove(categoryName: String, a: AttractionResponse): Category {
         val category = categoryRepository.findByName(categoryName).orElseThrow{
-            throw RuntimeException("Category not found")
+            CategoryNotFoundException("Category '$categoryName' not found")
         }
         val attractionOptional = attractionRepository.findByName(a.name)
-        val attraction = attractionOptional.orElseThrow { RuntimeException("Attraction not found") }
+        val attraction = attractionOptional.orElseThrow { AttractionNotFoundException("Attraction '${a.name}' not found") }
         category.attractions.remove(attraction)
         attraction.categories.remove(category)
         return categoryRepository.save(category)
@@ -112,7 +113,7 @@ class AttractionService {
 
     fun getOne(attractionName: String): Attraction? {
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
-            RuntimeException("No attraction found")
+            AttractionNotFoundException("Attraction '$attractionName' not found")
         }
         return attraction
     }
