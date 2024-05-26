@@ -113,11 +113,7 @@ class AttractionService {
         val category = categoryRepository.findByName(categoryName).orElseThrow {
             CategoryNotFoundException("Category '$categoryName' not found")
         }
-
-        if (category.attractions.isNotEmpty()) {
-            throw CategoryDeleteException("Cannot delete category '$categoryName' because it still has attractions tied to it.")
-        }
-
+        
         val attractionOptional = attractionRepository.findByName(a.name)
         val attraction = attractionOptional.orElseThrow { AttractionNotFoundException("Attraction '${a.name}' not found") }
         category.attractions.remove(attraction)
