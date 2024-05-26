@@ -70,10 +70,8 @@ export default {
                 }
                 alert('Attraction deleted succesfully!');
                 console.log(response);
-                this.$router.push('/');
+
             })
-
-
         }
     }
 }
@@ -96,8 +94,8 @@ export default {
                 <p>Minimum height (in cm): <input type="number" v-model="attraction.minHeight"></p>
                 <p>Speed: (in km/h) <input type="number" v-model="attraction.speed"></p>
                 <button type="submit">Save Changes</button>
-                <button @click="deleteAttraction">Delete Attraction</button>
             </form>
+            <button @click="deleteAttraction">Delete Attraction</button>
         </div>
         <div v-else>
             <p>Loading...</p>
