@@ -25,4 +25,10 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(GenericErrorResponse(message = exception.message, timeStamp = System.currentTimeMillis()))
     }
+
+    @ExceptionHandler
+    fun handleCategoryDeleteException(exception: CategoryDeleteException): ResponseEntity<GenericErrorResponse>{
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(GenericErrorResponse(message = exception.message, timeStamp = System.currentTimeMillis()))
+    }
 }

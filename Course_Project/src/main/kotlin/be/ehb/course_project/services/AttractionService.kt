@@ -5,6 +5,7 @@ import be.ehb.course_project.dto.attraction.AttractionResponse
 import be.ehb.course_project.dto.attraction.CreateAttractionRequest
 import be.ehb.course_project.dto.attraction.UpdateAttractionRequest
 import be.ehb.course_project.exceptions.AttractionNotFoundException
+import be.ehb.course_project.exceptions.CategoryDeleteException
 import be.ehb.course_project.exceptions.CategoryNotFoundException
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
@@ -101,9 +102,14 @@ class AttractionService {
     }
 
     fun remove(categoryName: String, a: AttractionResponse): Category {
-        val category = categoryRepository.findByName(categoryName).orElseThrow{
+        val category = categoryRepository.findByName(categoryName).orElseThrow {
             CategoryNotFoundException("Category '$categoryName' not found")
         }
+
+        if (category.attractions.isNotEmpty()) {
+            throw CategoryDeleteException("Cannot delete category '$categoryName' because it still has attractions tied to it.")
+        }
+
         val attractionOptional = attractionRepository.findByName(a.name)
         val attraction = attractionOptional.orElseThrow { AttractionNotFoundException("Attraction '${a.name}' not found") }
         category.attractions.remove(attraction)
