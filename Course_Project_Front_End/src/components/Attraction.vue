@@ -52,7 +52,7 @@ export default {
         <br>
         <br>
         <RouterLink :to="{ path: '/attraction/edit', query: { name: name } }" class="btn">Edit Attraction</RouterLink>
-            <button @click="endMaintenance" class="btn">End Maintenance</button>
+        <button @click="endMaintenance" class="btn">End Maintenance</button>
         </template>
         <template v-else>
             <p>Name:{{ name }}</p>
@@ -75,7 +75,7 @@ export default {
         <br>
         <br>
         <RouterLink :to="{ path: '/attraction/edit', query: { name: name } }" class="btn">Edit Attraction</RouterLink>
-            <RouterLink :to="{ path: '/maintenance/add', query: { name: name } }" class="btn">Start Maintenance</RouterLink>
+        <RouterLink :to="{ path: '/maintenance/add', query: { name: name } }" class="btn">Start Maintenance</RouterLink>
         </template>
     </div>
 </template>
