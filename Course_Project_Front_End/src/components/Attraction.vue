@@ -28,7 +28,10 @@ export default {
                 console.log(response);
                 window.location.reload();
             })
-        }
+        },
+        formatDate(dateString) {
+            return new Date(dateString).toISOString().split('T')[0];
+        },
 
     }
 }
@@ -38,14 +41,14 @@ export default {
     <div class="attraction">
       <p>Name: {{ name }}</p>
       <p>Capacity: {{ capacity }}</p>
-      <p>Date of build: {{ dateOfBuild }}</p>
+      <p>Date of build: {{ formatDate(dateOfBuild) }}</p>
       <p>Maintenance frequency: {{ maintenanceFrequency }}</p>
       <p>Duration: {{ duration }}</p>
       <p>Minimum height: {{ minHeight }}</p>
       <p>Speed: {{ speed }}</p>
       <p>In maintenance: {{ inMaintenance }}</p>
       <p v-if="inMaintenance">Next maintenance due: Ongoing</p>
-      <p v-else>Next maintenance due: {{ nextMaintenance }}</p>
+      <p v-else>Next maintenance due: {{ formatDate(nextMaintenance) }}</p>
       <p>Categories: 
         <span v-for="(category, index) in categories" :key="index">{{ category.title }}, </span>
       </p>
