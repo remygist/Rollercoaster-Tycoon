@@ -1,11 +1,6 @@
 package be.ehb.course_project.models
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.OneToMany
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.sql.Time
 import java.util.Date
 
@@ -28,6 +23,6 @@ data class Attraction(
     @ManyToMany
     var categories: MutableList<Category> = mutableListOf()
 
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     var maintenances: MutableList<Maintenance> = mutableListOf()
 }
