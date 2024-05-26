@@ -1,6 +1,7 @@
 package be.ehb.course_project.services
 
 import be.ehb.course_project.dto.maintenance.CreateMaintenanceRequest
+import be.ehb.course_project.exceptions.AttractionNotFoundException
 import be.ehb.course_project.models.Maintenance
 import be.ehb.course_project.repositories.AttractionRepository
 import be.ehb.course_project.repositories.MaintenanceRepository
@@ -16,7 +17,7 @@ class MaintenanceService {
 
     fun addMaintenanceToAttraction(attractionName: String, request: CreateMaintenanceRequest){
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
-            RuntimeException("Attraction not found")
+            AttractionNotFoundException("Attraction '$attractionName' not found")
         }
 
         val maintenance = Maintenance(
@@ -36,11 +37,11 @@ class MaintenanceService {
 
     fun finishMaintenance(attractionName: String){
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
-            RuntimeException("Attraction not found")
+            AttractionNotFoundException("Attraction '$attractionName' not found")
         }
 
-        if (attraction.inMaintenance == false){
-            throw RuntimeException("The attraction is not under maintenance.")
+        if (!attraction.inMaintenance){
+            throw RuntimeException("The attraction '$attractionName' is not under maintenance.")
         } else{
             val currentDate = Date()
             val maintenance = attraction.maintenances.last()

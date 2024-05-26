@@ -2,6 +2,7 @@ package be.ehb.course_project.services
 
 import be.ehb.course_project.dto.category.CreateCategoryRequest
 import be.ehb.course_project.dto.category.UpdateCategoryRequest
+import be.ehb.course_project.exceptions.CategoryNotFoundException
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.repositories.CategoryRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,7 +30,7 @@ class CategoryService {
 
     fun update(categoryName: String, updateCategoryRequest: UpdateCategoryRequest):Category{
         val category = categoryRepository.findByName(categoryName).orElseThrow{
-            throw RuntimeException("Category not found")
+            CategoryNotFoundException("Category '$categoryName' not found")
         }
 
         updateCategoryRequest.title?.let { category.title = it }
@@ -39,7 +40,7 @@ class CategoryService {
 
     fun delete(categoryName: String): Category? {
         val category = categoryRepository.findByName(categoryName).orElseThrow {
-            RuntimeException("Category not found")
+            CategoryNotFoundException("Category '$categoryName' not found")
         }
 
         if (category.attractions.isNotEmpty()) {
