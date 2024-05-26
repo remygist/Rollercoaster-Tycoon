@@ -57,7 +57,7 @@ nav a:hover{
   color: black;
 }
 
-.attraction{
+.attraction, .attraction a{
   color: white;
 }
 
