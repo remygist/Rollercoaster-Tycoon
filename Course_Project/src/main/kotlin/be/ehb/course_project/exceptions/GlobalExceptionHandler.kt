@@ -16,13 +16,13 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler
     fun handleAttractionNotFoundException(exception: AttractionNotFoundException): ResponseEntity<GenericErrorResponse>{
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(GenericErrorResponse(status = HttpStatus.NOT_FOUND.value(), message = exception.message, timeStamp = System.currentTimeMillis()))
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(GenericErrorResponse(message = exception.message, timeStamp = System.currentTimeMillis()))
     }
 
     @ExceptionHandler
     fun handleCategoryNotFoundException(exception: CategoryNotFoundException): ResponseEntity<GenericErrorResponse>{
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(GenericErrorResponse(status = HttpStatus.NOT_FOUND.value(), message = exception.message, timeStamp = System.currentTimeMillis()))
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(GenericErrorResponse(message = exception.message, timeStamp = System.currentTimeMillis()))
     }
 }
