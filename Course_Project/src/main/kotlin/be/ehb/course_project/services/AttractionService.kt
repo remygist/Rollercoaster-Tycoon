@@ -98,6 +98,14 @@ class AttractionService {
         val attraction = attractionRepository.findByName(attractionName).orElseThrow{
             AttractionNotFoundException("Attraction '$attractionName' not found")
         }
+
+        for (category in attraction.categories) {
+            category.attractions.remove(attraction)
+            categoryRepository.save(category)
+        }
+
+        attraction.categories.clear()
+
         attractionRepository.delete(attraction)
     }
 
