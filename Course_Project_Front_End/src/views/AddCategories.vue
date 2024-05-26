@@ -1,12 +1,12 @@
 <script>
 export default {
-    data(){
+    data() {
         return {
             title: '',
         }
     },
-    methods:{
-        submit(){
+    methods: {
+        submit() {
             if (!this.title.trim()) {
                 alert('Please enter a title.');
                 return;
@@ -15,11 +15,11 @@ export default {
             const categoryData = {
                 title: this.title,
             };
-            fetch('http://localhost:8080/category',{
+            fetch('http://localhost:8080/category', {
                 method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(categoryData)
-            }).then(function (response){
+            }).then(function (response) {
                 if (!response.ok) {
                     throw new Error('Failed to add category. Please try again later.');
                 }
@@ -34,8 +34,8 @@ export default {
 
 <template>
     <form @submit.prevent="submit">
-    <h1>Add category:</h1>
-    <p>Title: <input type="text" v-model="title"></p>
-    <button type="submit">Add category</button>
+        <h1>Add category:</h1>
+        <p>Title: <input type="text" v-model="title"></p>
+        <button type="submit">Add category</button>
     </form>
 </template>

@@ -27,9 +27,9 @@ export default {
         },
         submit() {
             if (!this.attraction || !this.attraction.name || !this.attraction.capacity || !this.attraction.dateOfBuild || !this.attraction.image || !this.attraction.onrideVideo || !this.attraction.maintenanceFrequency || !this.attraction.duration || !this.attraction.minHeight || !this.attraction.speed) {
-        alert('Please fill in all fields.');
-        return;
-        }
+                alert('Please fill in all fields.');
+                return;
+            }
 
             const attractionData = {
                 name: this.attraction.name,
@@ -46,11 +46,11 @@ export default {
             };
 
             console.log(attractionData);
-            fetch(`http://localhost:8080/index/editAttraction/${this.attractionName}`,{
+            fetch(`http://localhost:8080/index/editAttraction/${this.attractionName}`, {
                 method: 'PUT',
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(attractionData)
-            }).then(function (response){
+            }).then(function (response) {
                 if (!response.ok) {
                     throw new Error('Failed to update attraction. Please try again later.');
                 }
@@ -58,13 +58,13 @@ export default {
                 console.log(response);
             })
         },
-        deleteAttraction(){
+        deleteAttraction() {
             const currentComponent = this;
 
-            fetch(`http://localhost:8080/index/deleteAttraction/${this.attractionName}`,{
+            fetch(`http://localhost:8080/index/deleteAttraction/${this.attractionName}`, {
                 method: 'DELETE',
-                headers: {"Content-Type": "application/json"},
-            }).then(function (response){
+                headers: { "Content-Type": "application/json" },
+            }).then(function (response) {
                 if (!response.ok) {
                     throw new Error('Failed to delete attraction. Please try again later.');
                 }
@@ -72,8 +72,8 @@ export default {
                 console.log(response);
                 this.$router.push('/');
             })
-            
-            
+
+
         }
     }
 }

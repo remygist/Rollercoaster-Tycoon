@@ -11,10 +11,9 @@ export default {
     <div class="category">
         <p>Name:{{ title }}</p>
         <p>Attractions with this category: <span v-for="(attraction, index) in attractions" :key="index">
-            {{ attraction.name }},
+                {{ attraction.name }},
             </span>
         </p>
-        <RouterLink :to="{ path: '/category/edit', query: { title: title} }" class="btn">Edit Category</RouterLink>
+        <RouterLink :to="{ path: '/category/edit', query: { title: title } }" class="btn">Edit Category</RouterLink>
     </div>
 </template>
-

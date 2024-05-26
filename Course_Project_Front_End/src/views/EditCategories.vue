@@ -13,8 +13,8 @@ export default {
     methods: {
         submit() {
             if (!this.categoryTitle || !this.attractions) {
-            alert('Please fill in a category name.');
-            return;
+                alert('Please fill in a category name.');
+                return;
             }
             const categoryData = {
                 title: this.categoryTitle,
@@ -50,12 +50,12 @@ export default {
             this.$router.push('/');
 
         },
-        addAttraction() {  
+        addAttraction() {
 
             if (!this.categoryTitle || !this.addAttractionName) {
-            alert('Please fill in the name of the attraction you want to add.');
-            return;
-        }
+                alert('Please fill in the name of the attraction you want to add.');
+                return;
+            }
 
             const categoryData = {
                 categoryName: this.categoryTitle,
@@ -73,13 +73,13 @@ export default {
                 alert('Category added to attraction succesfully!');
                 console.log(response);
             })
-            
-     
+
+
         },
-        deleteAttractionFromCategory() { 
+        deleteAttractionFromCategory() {
             if (!this.categoryTitle || !this.removeAttractionName) {
-            alert('Please fill in the name of the attraction you want to delete.');
-            return;
+                alert('Please fill in the name of the attraction you want to delete.');
+                return;
             }
             const attractionData = {
                 name: this.removeAttractionName
@@ -96,8 +96,8 @@ export default {
                 alert('Category deleted from attraction succesfully!');
                 console.log(response);
             })
-            
-     
+
+
         }
     }
 }

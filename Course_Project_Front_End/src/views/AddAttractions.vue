@@ -18,9 +18,9 @@ export default {
         submit() {
 
             if (!this.name || !this.capacity || !this.dateOfBuild || !this.image || !this.onrideVideo || !this.maintenanceFrequency || !this.duration || !this.minHeight || !this.speed) {
-            alert('Please fill in all fields.');
-            return;
-        }
+                alert('Please fill in all fields.');
+                return;
+            }
 
             const attractionData = {
                 name: this.name,
@@ -34,11 +34,11 @@ export default {
                 speed: this.speed,
                 inMaintenance: false
             };
-            fetch('http://localhost:8080/index',{
+            fetch('http://localhost:8080/index', {
                 method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(attractionData)
-            }).then(function (response){
+            }).then(function (response) {
                 if (!response.ok) {
                     throw new Error('Failed to add attraction. Please try again later.');
                 }
@@ -46,8 +46,8 @@ export default {
                 console.log(response);
                 window.location.reload();
             })
-            
-            
+
+
         }
     }
 }

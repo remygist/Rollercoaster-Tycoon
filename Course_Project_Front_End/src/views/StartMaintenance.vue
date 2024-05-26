@@ -10,9 +10,9 @@ export default {
     methods: {
         submit() {
             if (!this.reason) {
-            alert('Please fill in a reason for maintenance.');
-            return;
-        }
+                alert('Please fill in a reason for maintenance.');
+                return;
+            }
 
             this.startDate = new Date().toISOString();
 
