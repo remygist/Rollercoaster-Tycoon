@@ -4,6 +4,7 @@ import be.ehb.course_project.dto.attraction.AddCategoryToAttractionRequest
 import be.ehb.course_project.dto.attraction.AttractionResponse
 import be.ehb.course_project.dto.attraction.CreateAttractionRequest
 import be.ehb.course_project.dto.attraction.UpdateAttractionRequest
+import be.ehb.course_project.exceptions.AttractionNotFoundException
 import be.ehb.course_project.models.Attraction
 import be.ehb.course_project.models.Category
 import be.ehb.course_project.repositories.AttractionRepository
@@ -52,19 +53,24 @@ class AttractionService {
     }
 
     fun addCategory(c: AddCategoryToAttractionRequest): Attraction {
-        val attractionOptional = attractionRepository.findByName(c.attractionName)
-        val categoryOptional = categoryRepository.findByName(c.categoryName)
+        try {
+            val attractionOptional = attractionRepository.findByName(c.attractionName)
+            val categoryOptional = categoryRepository.findByName(c.categoryName)
 
-        val attraction = attractionOptional.orElseThrow { RuntimeException("Attraction not found") }
-        val category = categoryOptional.orElseThrow { RuntimeException("Category not found") }
+            val attraction = attractionOptional.orElseThrow { AttractionNotFoundException("Attraction not found") }
+            val category = categoryOptional.orElseThrow { RuntimeException("Category not found") }
 
-        if (attraction.categories.contains(category)) {
-           throw RuntimeException("Attraction already contains this category")
+            if (attraction.categories.contains(category)) {
+                throw RuntimeException("Attraction already contains this category")
+            }
+
+            attraction.categories.add(category)
+            category.attractions.add(attraction)
+            return attractionRepository.save(attraction)
+        } catch (exception: Exception){
+            throw exception
         }
 
-        attraction.categories.add(category)
-        category.attractions.add(attraction)
-        return attractionRepository.save(attraction)
     }
 
     fun update(attractionName: String, updateAttractionRequest: UpdateAttractionRequest): Attraction{
