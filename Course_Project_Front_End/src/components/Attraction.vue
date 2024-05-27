@@ -52,9 +52,11 @@ export default {
         <p>Categories:
             <span v-for="(category, index) in categories" :key="index">{{ category.title }}, </span>
         </p>
-        <p>Previous maintenances:
-            <span v-for="(maintenance, index) in maintenances" :key="index">{{ maintenance.reason }}, </span>
-        </p>
+        <template v-if="!inMaintenance">
+            <p>Previous maintenances:
+                <span v-for="(maintenance, index) in maintenances" :key="index">{{ maintenance.reason }}, </span>
+            </p>
+        </template>
         <a :href="onrideVideo" target="_blank">Onride video</a>
         <img :src="image" :alt="name">
         <br><br>
