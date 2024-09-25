@@ -29,8 +29,6 @@ Follow these steps to set up the project locally:
     ```sh
     npm run dev
     ```
-5. **Open the application**:
-    Open your browser and go to `http://localhost:5173/`.
 
 ## Technologies
 
