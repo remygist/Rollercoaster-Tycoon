@@ -1,4 +1,4 @@
-# Dev4 - Rollercoaster Tycoon
+#Rollercoaster Tycoon
 
 ## Table of Contents
 
