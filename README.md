@@ -3,15 +3,9 @@ Rollercoaster Tycoon is a dynamic amusement park management application built wi
 
 ## Table of Contents
 
-- [Introduction](#introduction)
 - [Installation](#installation)
 - [Technologies](#technologies)
 - [Sources](#sources)
-
-
-## Introduction
-
-This repository contains our course project for the course 'Development'. It is a website for a amusement parc where you can add, delete or edit attractions and there info.
 
 ## Installation
 
