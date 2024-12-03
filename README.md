@@ -1,4 +1,5 @@
-#Rollercoaster Tycoon
+# Rollercoaster Tycoon
+Rollercoaster Tycoon is a dynamic amusement park management application built with Kotlin, Spring Boot, and Vue. The platform allows users to manage park attractions efficiently by adding, editing, or removing rides and tracking their key details.
 
 ## Table of Contents
 
